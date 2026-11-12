@@ -1,0 +1,63 @@
+.
+├── .next/
+├── app/
+│   ├── (auth)/ 
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   └── register/
+│   │       └── page.tsx
+│   ├── api/ 
+│   ├── components/
+│   │   ├── Footer.tsx
+│   │   └── Header.tsx
+│   ├── global.css
+│   ├── page.tsx 
+│   └── layout.tsx 
+├── backend/ 
+│   └── lib/ 
+│       └── prisma.ts 
+├── node_modules/
+├── prisma/ 
+│   ├── migrations/ 
+│   └── schema.prisma
+├── public/
+├── .env 
+├── .gitignore 
+├── eslint.config.mjs 
+├── next.config.ts 
+├── package.json 
+├── prisma7.config.ts 
+├── README.md 
+└── tsconfig.json 
+
+.
+├── .next/ - Contains build folder and cached dev builds
+├── app/
+│   ├── (auth)/ - Grouped folder for auth pages
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   └── register/
+│   │       └── page.tsx
+│   ├── api/ - API directory for routes
+│   ├── components/
+│   │   ├── Footer.tsx
+│   │   └── Header.tsx
+│   ├── global.css - Global CSS that imports Tailwind
+│   ├── page.tsx - Landing Page
+│   └── layout.tsx - Root Layout
+├── backend/ - Backend directory for services, middleware, utility functions
+│   └── lib/ 
+│       └── prisma.ts - Creates a global Prisma client that is imported in the frontend
+├── node_modules/
+├── prisma/ - Prisma directory to store migrations and schema
+│   ├── migrations/ - Migrations to the DB 
+│   └── schema.prisma - Contract to the DB that generates the DB tables and relations
+├── public/
+├── .env - File that contains environment varibles 
+├── .gitignore 
+├── eslint.config.mjs 
+├── next.config.ts 
+├── package.json 
+├── prisma7.config.ts 
+├── README.md 
+└── tsconfig.json 

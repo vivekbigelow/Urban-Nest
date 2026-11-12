@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f3f6ee;
+  --primary: #315c4a;
+  --accent: #ddf277;
+  --secondary: #ffb58f;
+  --dark-text: #17201e;
+  --muted-text: #86916e;
+  --light-green: #e8f0d4;
+  --white: #ffffff;
+  --dark-section: #315c4a;
+  --dark-section-content: #d0e0cf;
+  --card-border: #e4eae1;
+  --input-background: #fcfdfb;
+  --input-text: #34483d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+h1 {
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 105%;
+}
+
+h2 {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: normal;
+}
+
+h3 {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.body-large {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.button-label {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+@layer components {
+  .input-field {
+    @apply w-full rounded-[12px] border border-[var(--card-border)] bg-[var(--input-background)] px-[20px] py-[12px] text-sm text-[var(--input-text)] placeholder:text-[#98a29b] outline-none;
+  }
+
+  .checkbox-field {
+    @apply h-3.5 w-3.5 accent-[var(--dark-section)];
+  }
+  .photo-upload {
+    @apply flex min-h-28 cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-[var(--primary)] bg-[var(--background)] p-4 text-center transition hover:border-[var(--dark-text)];
+  }
+}
+
+.primary-button {
+  background: var(--accent);
+  color: var(--primary);
+  border-radius: 999px;
+  border: 1px solid var(--primary);
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 12px 20px 12px 20px;
+  cursor: pointer;
+}
+
+.primary-button:active {
+  background: var(--primary);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.secondary-button {
+  background: var(--white);
+  color: var(--primary);
+  border-radius: 999px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 12px 20px 12px 20px;
+}
+
+.secondary-button:active {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.card-container,
+.form-section {
+  background: var(--white);
+  border-radius: 22px;
+  border: 1px solid var(--card-border);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-section-title {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: var(--text-3xl);
+}
+
+.form-section-description {
+  color: var(--muted-text);
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-field {
+  width: 100%;
+  appearance: none;
+  padding: 12px 40px 12px 16px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background-color: var(--input-background);
+  font-size: 14px;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+.input-field:focus,
+.select-field:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.option-item {
+  color: var(--input-text);
+}
+
+.selected-checkbox-label {
+  background-color: var(--background);
+  border-color: var(--primary);
+}
+
+.space-detail-input {
+  appearance: none;
+  margin: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  appearance: textfield;
+}

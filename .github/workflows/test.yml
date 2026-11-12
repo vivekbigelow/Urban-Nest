@@ -1,0 +1,66 @@
+# GitHub Actions workflow for automatically running our Jest tests.
+#
+# FLOW:
+# Push to main
+#   -> GitHub creates an Ubuntu runner
+#   -> Repository is copied onto the runner
+#   -> Node.js is installed
+#   -> Project dependencies are installed
+#   -> Jest tests are executed
+#
+# IMPORTANT:
+# "uses:" = run a reusable GitHub Action created elsewhere.
+# "run:"  = execute a terminal command on the GitHub runner.
+
+name: Run Jest Tests
+
+# TRIGGER:
+# Run this workflow whenever code is pushed to the main branch.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    # GitHub creates a fresh Ubuntu virtual machine for this job.
+    runs-on: ubuntu-latest
+
+    steps:
+      # STEP 1 — CHECKOUT
+      # The runner starts without our project files.
+      # actions/checkout copies our repository onto the runner.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # STEP 2 — NODE
+      # Installs Node.js 20 so the runner can use Node and npm.
+      # cache: npm allows npm's downloaded package data to be reused
+      # between workflow runs, which can make future installs faster.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # STEP 3 — DEPENDENCIES
+      # node_modules is NOT stored in Git.
+      #
+      # npm ci reads package-lock.json and installs the project's
+      # dependencies onto this fresh machine.
+      #
+      # This gives the runner Jest, React, Next.js, etc.
+      - name: Install dependencies
+        run: npm ci
+
+      # STEP 4 — TEST
+      # npm test looks at package.json:
+      #
+      # "test": "jest"
+      #
+      # which starts Jest and runs all discovered test files.
+      #
+      # Tests pass -> exit code 0 -> GitHub marks job successful.
+      # Tests fail -> exit code 1 -> GitHub marks job failed.
+      - name: Run Jest tests
+        run: npm test
